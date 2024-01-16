@@ -29,11 +29,11 @@ export default {
     }
   },
   mounted() {
-    if(!this.apiKey){
+    if(this.apiKey === ''){
       this.tags = EXAMPLE_CATEGORIES;
+      this.state = StateEnum.Loaded;
     }else {
       this.getCategoriesGifs();
-
     }
   },
   methods: {

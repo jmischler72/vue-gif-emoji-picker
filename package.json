@@ -19,7 +19,10 @@
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "build": "rimraf dist && vite build && vue-tsc --emitDeclarationOnly"
+    "build": "rimraf dist && vite build && vue-tsc --emitDeclarationOnly",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "vue": "^3.3.11"
