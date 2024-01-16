@@ -1,0 +1,9 @@
+.demo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  box-shadow: 0 2px 6px gray;
+  border-radius: 5px;
+  padding: 20px 30px;
+}

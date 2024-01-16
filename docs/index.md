@@ -1,8 +1,14 @@
 # What is My Lib?
 
-This library is a starter to create your own Vue 3 component library in TypeScript.
+<strong>This component library offers a set of two components: a GIF Picker and an Emoji Picker.</strong>
 
-There are two example components included for you to get started with creating your own components:
+The GIF Picker component seamlessly integrates with the Tenor API, allowing users to search and select GIFs
+effortlessly. It includes an intuitive interface with a search bar and display area for quick and engaging GIF
+exploration. 
 
-- [ComponentA](/components/component-a) is a simple Hello World component with icon from bundled font file.
-- [ComponentB](/components/component-b) is a counter component using button from [PrimeVue](https://www.primefaces.org/primevue/), icons from [PrimeIcons](https://www.primefaces.org/showcase/icons.xhtml) and styling from [PrimeFlex](https://www.primefaces.org/primeflex/).
+On the other hand, the Emoji Picker component provides users with a wide array of expressive emojis,
+enhancing communication within applications. 
+
+Both components are designed to be easily integrated into Vue 3 projects,
+providing a delightful user experience and adding expressive elements to any application.
+

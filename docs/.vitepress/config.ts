@@ -15,7 +15,7 @@ export default {
       }, {
         text: 'Components',
         items: [
-          { text: 'Component A', link: '/components/component-a' },
+          { text: 'Gif Picker', link: '/components/gif-picker' },
           { text: 'Component B', link: '/components/component-b' },
         ],
       }
