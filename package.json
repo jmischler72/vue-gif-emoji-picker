@@ -1,0 +1,39 @@
+{
+  "name": "vue-picker-library",
+  "description": "dd",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "main": "./dist/vue-picker-library.umd.cjs",
+  "module": "./dist/vue-picker-library.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-picker-library.js",
+      "require": "./dist/vue-picker-library.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "rimraf dist && vite build && vue-tsc --emitDeclarationOnly"
+  },
+  "dependencies": {
+    "vue": "^3.3.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.2",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.33",
+    "rimraf": "^5.0.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vitepress": "^1.0.0-rc.39",
+    "vue-tsc": "^1.8.25"
+  }
+}
