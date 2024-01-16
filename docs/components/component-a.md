@@ -11,7 +11,7 @@ This is a simple Hello Word component with a prop and use icon <span class="icon
 
 You may show demo below with the code snippet.
 
-  <Basic/>
+<Basic/>
 
 ```vue
 <template>
