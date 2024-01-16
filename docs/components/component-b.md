@@ -1,5 +1,5 @@
 <script setup>
-import Basic from './demo/ComponentB/Basic.vue'
+import Basic from './demo/EmojiPicker/Basic.vue'
 </script>
 # Component B
 
@@ -16,7 +16,7 @@ Click the buttons to change the count.
   <Basic/>
 </DemoContainer>
 
-<<< @/components/demo/ComponentB/Basic.vue
+<<< @/components/demo/EmojiPicker/Basic.vue
 
 ## Reference
 You may show props, slots, events, methods, etc. using Markdown.
