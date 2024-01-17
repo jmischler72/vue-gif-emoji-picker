@@ -3,7 +3,7 @@
 import type {CategoryObject} from "./types/CategoryObject";
 import type {ResponseObject} from "./types/ResponseObject";
 import {StateEnum} from "./StateEnum";
-import {EXAMPLE_CATEGORIES} from "./categories.ts";
+import {EXAMPLE_CATEGORIES} from "./example_categories.ts";
 
 const tenorApiUrl = "https://tenor.googleapis.com/v2";
 
@@ -26,19 +26,21 @@ export default {
       results: [] as ResponseObject[],
       tags: [] as CategoryObject[],
       state: StateEnum.Loading,
+      isDemoComponent: false,
     }
   },
   mounted() {
     if (this.apiKey === '') {
       this.tags = EXAMPLE_CATEGORIES;
       this.state = StateEnum.Loaded;
+      this.isDemoComponent = true;
     } else {
       this.getCategoriesGifs();
     }
   },
   methods: {
     getGifsFromSearch() {
-      if (!this.search) {
+      if (!this.search || this.isDemoComponent) {
         return;
       }
       this.state = StateEnum.Loading;
@@ -53,29 +55,28 @@ export default {
             this.results = results as ResponseObject[];
             this.state = StateEnum.Loaded;
           })
-          .catch((error) => {
+          .catch(() => {
             this.state = StateEnum.Error;
-            console.log(error)
           })
     },
     getCategoriesGifs() {
+      if (this.isDemoComponent) {
+        return;
+      }
       this.state = StateEnum.Loading;
       fetch(tenorApiUrl + `/categories?key=${this.apiKey}`)
           .then(response => {
-            console.log(response);
             if (response.ok) {
               return response.json();
             }
             throw new Error('Something went wrong');
           })
           .then(({tags}) => {
-            console.log(tags);
             this.tags = tags as CategoryObject[];
             this.state = StateEnum.Loaded;
           })
-          .catch((error) => {
+          .catch(() => {
             this.state = StateEnum.Error;
-            console.log(error)
           })
     }
   }
@@ -127,7 +128,7 @@ export default {
 
     <div v-else-if="state === StateEnum.Loaded" class="h-full w-full flex overflow-hidden pt-2 ">
       <div class="overflow-auto p-4- w-full">
-        <div v-if="search && results && results.length"
+        <div v-if="search && results.length"
              class="grid grid-cols-2 grid-flow-row auto-rows-auto gap-1">
           <div
               v-for="(result, r) in results"
@@ -137,15 +138,18 @@ export default {
               @click="$emit('gifSent', result)"
           />
         </div>
-        <div v-else-if="tags && tags.length" class="grid grid-cols-2 grid-flow-row auto-rows-auto gap-1">
+        <div v-else-if="tags.length" class="grid grid-cols-2 grid-flow-row auto-rows-auto gap-1">
           <div
               v-for="(tag, t) in tags"
               :key="t"
-              class="h-20 rounded-lg bg-cover text-white flex items-center justify-center font-semibold font-xl border-2 border-transparent hover:border-blue transition duration-300 cursor-pointer group z-1 overflow-hidden "
+              class="h-20 rounded-lg bg-cover text-white flex items-center justify-center font-semibold font-xl cursor-pointer group z-1 overflow-hidden "
               :style="`background-image: url(${tag.image})`"
               @click.stop="search = tag.searchterm; getGifsFromSearch()"
           >
-            {{ tag.searchterm }}
+            <div class="h-full w-full justify-center items-center flex" style="backdrop-filter: blur(2px);">
+              <span>{{ tag.searchterm }}</span>
+
+            </div>
           </div>
         </div>
       </div>

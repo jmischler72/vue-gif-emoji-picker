@@ -1,6 +1,8 @@
 <script lang="ts">
 
-import emojis from './emoji.json'
+//https://github.com/github/gemoji/blob/master/db/emoji.json
+import emojis from './emoji.json';
+
 import {Emoji} from "./Emoji.ts";
 
 export default {
@@ -8,7 +10,7 @@ export default {
   data() {
     return {
       search: '',
-      results: [],
+      searchResults: [] as Emoji[],
       emojisByCategory: {} as Record<string, Emoji[]>,
       categorySelected: "",
     }
@@ -33,10 +35,13 @@ export default {
       if (!this.search) {
         return;
       }
-      console.log(this.search);
-
+      this.searchResults = emojis.filter(emoji =>
+          emoji.description.toLowerCase().includes(this.search.toLowerCase()) ||
+          emoji.tags.some(tag => tag.toLowerCase().includes(this.search.toLowerCase()))
+      );
     },
     selectCategory(category: string) {
+      this.search = '';
       this.categorySelected = category;
       this.scrollOnTop();
     },
@@ -64,7 +69,7 @@ export default {
           <input type="text"
                  v-model="search"
                  class="w-[80%] flex border-none rounded-lg bg-transparent px-4 py-2 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                 placeholder="Search for gifs...">
+                 placeholder="Search for emojis...">
           <div class="absolute right-2 flex items-center h-full p-2">
             <span class="material-symbols-outlined">search</span>
           </div>
@@ -77,13 +82,14 @@ export default {
         <span v-for="(category, c) in Object.keys(emojisByCategory)"
               :key="c"
               class="cursor-pointer rounded-lg"
-              :class="{ [`bg-gray-300 dark:bg-gray-600`]: category === categorySelected }"
+              :class="{ [`bg-gray-300 dark:bg-gray-600`]: (category === categorySelected) && search === '' }"
               @click="selectCategory(category)">{{ emojisByCategory[category][0].emoji }}</span>
       </div>
       <div id="emojis" class="overflow-auto px-2 w-full">
         <div
             class="grid grid-cols-6 grid-flow-row auto-rows-auto">
           <div
+              v-if="search === ''"
               v-for="(result, r) in emojisByCategory[categorySelected]"
               :key="r"
               class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
@@ -91,9 +97,48 @@ export default {
           >
             <span>{{ result.emoji }}</span>
           </div>
+          <div
+              v-else
+              v-for="(result, r2) in searchResults"
+              :key="r2"
+              class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
+              @click="$emit('emojiSent', result)"
+          >
+            <div class="tooltip-container">{{ result.emoji }}
+              <span class="tooltip-text">{{result.emoji}}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
 </template>
+
+<style scoped>
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
+</style>

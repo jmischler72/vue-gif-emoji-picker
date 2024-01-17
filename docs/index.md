@@ -1,4 +1,4 @@
-# What is My Lib?
+# What is this library?
 
 <strong>This component library offers a set of two components: a GIF Picker and an Emoji Picker.</strong>
 
