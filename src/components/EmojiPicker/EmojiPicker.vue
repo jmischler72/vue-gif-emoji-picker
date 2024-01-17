@@ -76,7 +76,7 @@ export default {
         </div>
       </div>
     </header>
-    <div class="h-full w-full flex overflow-hidden pt-2 flex flex-row">
+    <div class="h-full w-full flex overflow-hidden pt-2 flex-row">
       <div
           class="ml-1 border border-gray-500 shadow-xl rounded-lg px-1 py-1 text-xl h-full flex flex-col justify-between bg-white dark:bg-gray-800">
         <span v-for="(category, c) in Object.keys(emojisByCategory)"
