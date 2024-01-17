@@ -6,5 +6,5 @@ Both components were based on this repository [enzostvs/vue3-discordpicker](http
 
 - The GIF Picker component uses the Tenor API v2, allowing users to search and select GIFs. 
 
-- The Emoji Picker component provides users with a wide array of emojis. 
+- The Emoji Picker component provides users with a wide array of emojis sorted in multiples categories . 
 

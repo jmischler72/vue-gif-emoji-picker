@@ -1,22 +1,22 @@
 import path from "path";
 
 export default {
-  title: 'My Lib',
-  description: 'Just playing around.',
+  title: 'vue-gif-emoji-picker',
+  description: 'GIF and Emoji Picker Components for Vue3 projects',
   themeConfig: {
     repo: 'https://github.com/wuruoyun/vue-component-lib-starter',
     sidebar: [
       {
         text: 'Introduction',
         items: [
-          { text: 'What is My Lib?', link: '/' },
+          { text: 'What is this library?', link: '/' },
           { text: 'Getting Started', link: '/guide/' },
         ],
       }, {
         text: 'Components',
         items: [
-          { text: 'Gif Picker', link: '/components/gif-picker' },
-          { text: 'Component B', link: '/components/component-b' },
+          { text: 'GIF Picker', link: '/components/gif-picker' },
+          { text: 'Emoji Picker', link: '/components/emoji-picker' },
         ],
       }
     ],

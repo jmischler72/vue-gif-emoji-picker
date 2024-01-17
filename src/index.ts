@@ -1,15 +1,6 @@
-import { App } from 'vue';
-import * as components from './components'
-
-function install (app: App) {
-    for (const key in components) {
-        // @ts-expect-error
-        app.component(key, components[key])
-    }
-}
+import GifPicker from './components/GifPicker/GifPicker.vue'
+import EmojiPicker from './components/EmojiPicker/EmojiPicker.vue'
 
 import './style.css'
 
-export default { install }
-
-export * from './components'
+export { GifPicker, EmojiPicker }

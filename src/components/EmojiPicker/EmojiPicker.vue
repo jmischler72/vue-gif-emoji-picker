@@ -1,11 +1,9 @@
 <script lang="ts">
 
-import PickerHeader from "../PickerHeader.vue";
 import emojis from './emoji.json'
 import {Emoji} from "./Emoji.ts";
 
 export default {
-  components: {PickerHeader},
 
   data() {
     return {
@@ -15,8 +13,12 @@ export default {
       categorySelected: "",
     }
   },
+  watch: {
+    search() {
+      this.getEmojisFromSearch();
+    }
+  },
   mounted() {
-
     emojis.forEach(emoji => {
       const {category} = emoji;
       if (!this.emojisByCategory[category]) {
@@ -25,22 +27,13 @@ export default {
       this.emojisByCategory[category].push(emoji);
     });
     this.categorySelected = Object.keys(this.emojisByCategory)[0];
-    // console.log(this.emojisByCategory);
-    // console.log(Object.keys(this.emojisByCategory));
-
-    // Affiche les listes d'emojis triées par catégorie
-    // for (const category in emojisByCategory) {
-    //   if (emojisByCategory.hasOwnProperty(category)) {
-    //     console.log(`Catégorie: ${category}`);
-    //     console.log(emojisByCategory[category]);
-    //   }
-    // }
   },
   methods: {
-    getEmojisFromSearch(search: string) {
-      if (!search) {
+    getEmojisFromSearch() {
+      if (!this.search) {
         return;
       }
+      console.log(this.search);
 
     },
     selectCategory(category: string) {
@@ -61,19 +54,39 @@ export default {
 
   <div
       class="w-[16rem] h-[20rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-[0_-1px_5px_rgba(0,0,0,0.4)] p-1">
-    <PickerHeader :search="search" @onSearch="getEmojisFromSearch" @clearSearch="search = ''"/>
+    <header class="flex flex-row bg-white dark:bg-gray-800 shadow-lg z-1 rounded-lg px-1 py-1 dark:text-gray-300">
+      <div v-show="search" class="flex items-center px-2 cursor-pointer" @click="search = ''">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </div>
+      <div class="flex items-center justify-between w-full">
+        <div
+            class="flex items-center justify-between w-full rounded-lg border border-gray-500 gap-2 relative transition ease-in-out delay-150 ">
+          <input type="text"
+                 v-model="search"
+                 class="w-[80%] flex border-none rounded-lg bg-transparent px-4 py-2 text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                 placeholder="Search for gifs...">
+          <div class="absolute right-2 flex items-center h-full p-2">
+            <span class="material-symbols-outlined">search</span>
+          </div>
+        </div>
+      </div>
+    </header>
     <div class="h-full w-full flex overflow-hidden pt-2 flex flex-row">
-      <div class="flex flex-col">
+      <div
+          class="ml-1 border border-gray-500 shadow-xl rounded-lg px-1 py-1 text-xl h-full flex flex-col justify-between bg-white dark:bg-gray-800">
         <span v-for="(category, c) in Object.keys(emojisByCategory)"
+              :key="c"
+              class="cursor-pointer rounded-lg"
+              :class="{ [`bg-gray-300 dark:bg-gray-600`]: category === categorySelected }"
               @click="selectCategory(category)">{{ emojisByCategory[category][0].emoji }}</span>
       </div>
-      <div id="emojis" class="overflow-auto p-4- w-full">
+      <div id="emojis" class="overflow-auto px-2 w-full">
         <div
-            class="grid grid-cols-8 grid-flow-row auto-rows-auto">
+            class="grid grid-cols-6 grid-flow-row auto-rows-auto">
           <div
               v-for="(result, r) in emojisByCategory[categorySelected]"
               :key="r"
-              class="my-[1px] rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
+              class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
               @click="$emit('emojiSent', result)"
           >
             <span>{{ result.emoji }}</span>
@@ -84,22 +97,3 @@ export default {
   </div>
 
 </template>
-
-<style scoped>
-.square {
-  background: rgba(130, 130, 130, 0.2);
-  background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-  background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-  background-size: 800px 100px;
-  animation: wave-squares 1.5s infinite ease-out;
-}
-
-@keyframes wave-squares {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
-}
-</style>

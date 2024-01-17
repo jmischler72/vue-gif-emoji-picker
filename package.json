@@ -1,19 +1,19 @@
 {
-  "name": "vue-picker-library",
-  "description": "dd",
+  "name": "vue-gif-emoji-picker",
+  "description": "GIF and Emoji Picker Components for Vue3 projects",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "files": [
     "dist/*",
     "src/*"
   ],
-  "main": "./dist/vue-picker-library.umd.cjs",
-  "module": "./dist/vue-picker-library.js",
+  "main": "./dist/vue-gif-emoji-picker.umd.cjs",
+  "module": "./dist/vue-gif-emoji-picker.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-picker-library.js",
-      "require": "./dist/vue-picker-library.umd.cjs",
+      "import": "./dist/vue-gif-emoji-picker.js",
+      "require": "./dist/vue-gif-emoji-picker.umd.cjs",
       "types": "./dist/index.d.ts"
     },
     "./dist/style.css": "./dist/style.css"

@@ -9,9 +9,9 @@ export default defineConfig({
     lib: {
       // src/indext.ts is where we have exported the component(s)
       entry: resolve(__dirname, "src/index.ts"),
-      name: "vue-picker-library",
+      name: "vue-gif-emoji-picker",
       // the name of the output files when the build is run
-      fileName: "vue-picker-library",
+      fileName: "vue-gif-emoji-picker",
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
