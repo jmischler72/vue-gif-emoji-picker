@@ -1,7 +1,6 @@
 {
   "name": "vue-gif-emoji-picker",
   "description": "GIF and Emoji Picker Components for Vue3 projects",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "files": [
