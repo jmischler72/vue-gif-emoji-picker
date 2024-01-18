@@ -1,15 +1,15 @@
 <script lang="ts">
 
-//https://github.com/github/gemoji/blob/master/db/emoji.json
-import emojis from './emoji.json';
-
 import {Emoji} from "./types/Emoji.ts";
+
+const emojisURL = 'https://raw.githubusercontent.com/github/gemoji/master/db/emoji.json';
 
 export default {
   emits: ["emojiSent"],
   data() {
     return {
       search: '',
+      emojis: [] as Emoji[],
       results: [] as Emoji[],
       emojisByCategory: {} as Record<string, Emoji[]>,
       categorySelected: "",
@@ -23,15 +23,26 @@ export default {
       this.getEmojisFromSearch();
     }
   },
-  mounted() {
-    emojis.forEach(emoji => {
-      const {category} = emoji;
-      if (!this.emojisByCategory[category]) {
-        this.emojisByCategory[category] = [];
-      }
-      this.emojisByCategory[category].push(emoji);
-    });
-    this.selectCategory(Object.keys(this.emojisByCategory)[0]);
+  async mounted() {
+    fetch(emojisURL)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+        }).then((emojis: Emoji[]) => {
+          this.emojis = emojis;
+          emojis.forEach(emoji => {
+            const {category} = emoji;
+            if (!this.emojisByCategory[category]) {
+              this.emojisByCategory[category] = [];
+            }
+            this.emojisByCategory[category].push(emoji);
+          })
+          this.selectCategory(Object.keys(this.emojisByCategory)[0]);
+
+        }
+    );
+
   },
   methods: {
     getEmojisFromSearch() {
@@ -39,7 +50,7 @@ export default {
         this.results = this.emojisByCategory[this.categorySelected];
         return;
       }
-      this.results = emojis.filter(emoji =>
+      this.results = this.emojis.filter(emoji =>
           emoji.description.toLowerCase().includes(this.search.toLowerCase()) ||
           emoji.aliases.some(tag => tag.toLowerCase().includes(this.search.toLowerCase()))
       );
@@ -102,7 +113,7 @@ export default {
             <div v-if="tooltip" class="tooltip-container">{{ result.emoji }}
               <span class="tooltip-text bg-gray-600 dark:bg-gray-700 px-2">{{ result.aliases[0] }}</span>
             </div>
-            <span v-else>{{result.emoji}}</span>
+            <span v-else>{{ result.emoji }}</span>
           </div>
         </div>
       </div>
