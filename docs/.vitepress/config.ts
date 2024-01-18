@@ -1,6 +1,7 @@
 import path from "path";
 
 export default {
+  base: "/vue-gif-emoji-picker/",
   title: 'vue-gif-emoji-picker',
   description: 'GIF and Emoji Picker Components for Vue3 projects',
   themeConfig: {
