@@ -17,8 +17,20 @@ Click an emoji to see what it returns in the console
   <Basic/>
 </DemoContainer>
 
-<<< @/components/demo/EmojiPicker/Basic.vue
+```vue
+<template>
+  <EmojiPicker tooltip="true" @emojiSent="handleEmoji"/>
+</template>
+<script setup lang="ts">
+  import {EmojiPicker} from "vue-gif-emoji-picker";
+  import type {Emoji} from "vue-gif-emoji-picker";
+  import 'vue-gif-emoji-picker/dist/style.css';
 
+  function handleEmoji(emoji: Emoji) {
+    console.log(emoji);
+  }
+</script>
+```
 ## Reference
 
 You may show props, slots, events, methods, etc. using Markdown.

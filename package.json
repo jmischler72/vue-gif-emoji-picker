@@ -15,7 +15,7 @@
       "require": "./dist/vue-gif-emoji-picker.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "build": "rimraf dist && vite build && vue-tsc --emitDeclarationOnly",

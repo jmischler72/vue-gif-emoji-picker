@@ -35,7 +35,7 @@ To use this component, <strong> you will need to get an API key </strong> in ord
 <script setup lang="ts">
   import {GifPicker} from "vue-gif-emoji-picker";
   import type {Gif} from "vue-gif-emoji-picker";
-  import 'vue-gif-emoji-picker/style.css'; // not needed if imported globally
+  import 'vue-gif-emoji-picker/dist/style.css'; // not needed if imported globally
 
   function handleGif(gif: Gif) {
     console.log(gif);
