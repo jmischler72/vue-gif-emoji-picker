@@ -8,3 +8,8 @@ Both components were based on this repository [enzostvs/vue3-discordpicker](http
 
 - The Emoji Picker component provides users with a wide array of emojis sorted in multiples categories . 
 
+
+## Issues
+
+If you find any bug with one of the components, feel free to write an issue to the github repository
+- https://github.com/jmischler72/vue-gif-emoji-picker/issues/new
