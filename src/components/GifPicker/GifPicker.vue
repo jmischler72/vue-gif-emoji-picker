@@ -1,8 +1,8 @@
 <script lang="ts">
 
-import type {CategoryObject} from "./types/CategoryObject";
-import type {ResponseObject} from "./types/ResponseObject";
-import {StateEnum} from "./StateEnum";
+import type {CategoryObject} from "./types/tenor/CategoryObject";
+import type {ResponseObject} from "./types/tenor/ResponseObject";
+import {StateEnum} from "./types/StateEnum";
 import {EXAMPLE_CATEGORIES} from "./example_categories.ts";
 
 const tenorApiUrl = "https://tenor.googleapis.com/v2";
@@ -78,6 +78,12 @@ export default {
           .catch(() => {
             this.state = StateEnum.Error;
           })
+    },
+    emitGif(response: ResponseObject) {
+      this.$emit('gifSent', {
+        content_description: response.content_description,
+        url: response.media_formats['gif'].url
+      })
     }
   }
 }
@@ -135,7 +141,7 @@ export default {
               :key="r"
               class="h-20 rounded-lg bg-cover text-white flex items-center justify-center font-semibold font-xl border-2 border-transparent hover:border-blue transition duration-300 cursor-pointer group z-1 overflow-hidden"
               :style="`background-image: url(${result.media_formats['tinygif'].url})`"
-              @click="$emit('gifSent', result)"
+              @click="emitGif(result)"
           />
         </div>
         <div v-else-if="tags.length" class="grid grid-cols-2 grid-flow-row auto-rows-auto gap-1">
@@ -147,7 +153,7 @@ export default {
               @click.stop="search = tag.searchterm; getGifsFromSearch()"
           >
             <div class="h-full w-full justify-center items-center flex" style="backdrop-filter: blur(2px);">
-              <span>{{ tag.searchterm }}</span>
+              <span class="text-border">{{ tag.searchterm }}</span>
 
             </div>
           </div>
@@ -159,6 +165,14 @@ export default {
 </template>
 
 <style scoped>
+.text-border {
+  color: white;
+  text-shadow: -1px 1px 0 #333,
+  1px 1px 0 #333,
+  1px -1px 0 #333,
+  -1px -1px 0 #333;
+}
+
 .square {
   background: rgba(130, 130, 130, 0.2);
   background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));

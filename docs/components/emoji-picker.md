@@ -29,12 +29,14 @@ You may show props, slots, events, methods, etc. using Markdown.
 
 ### Events
 
-| Name        | Parameters   | Description     |
-| ----------- | ----------   | --------------- |
-|             |              |                 |
+| Name      | Parameters             | Description                 |
+|-----------|------------------------|-----------------------------|
+| emojiSent | [Emoji](#emoji-object) | Emoji returned when clicked |
 
-### Slots
+### Emoji Object
 
-| Name        | Parameters   | Description     |
-| ----------- | ----------   | --------------- |
-|             |              |                 |
+| Name        | Type   | Description              |
+|-------------|--------|--------------------------|
+| emoji       | string | Emoji character          |
+| category    | string | Category of the emoji    |
+| description | string | Description of the emoji |

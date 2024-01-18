@@ -1,4 +1,4 @@
-import {CategoryObject} from "./types/CategoryObject.ts";
+import {CategoryObject} from "./types/tenor/CategoryObject.ts";
 
 export const EXAMPLE_CATEGORIES: CategoryObject[] = [
     {

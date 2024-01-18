@@ -3,14 +3,14 @@
 //https://github.com/github/gemoji/blob/master/db/emoji.json
 import emojis from './emoji.json';
 
-import {Emoji} from "./Emoji.ts";
+import {Emoji} from "./types/Emoji.ts";
 
 export default {
 
   data() {
     return {
       search: '',
-      searchResults: [] as Emoji[],
+      results: [] as Emoji[],
       emojisByCategory: {} as Record<string, Emoji[]>,
       categorySelected: "",
     }
@@ -28,14 +28,14 @@ export default {
       }
       this.emojisByCategory[category].push(emoji);
     });
-    this.categorySelected = Object.keys(this.emojisByCategory)[0];
+    this.selectCategory(Object.keys(this.emojisByCategory)[0]);
   },
   methods: {
     getEmojisFromSearch() {
       if (!this.search) {
         return;
       }
-      this.searchResults = emojis.filter(emoji =>
+      this.results = emojis.filter(emoji =>
           emoji.description.toLowerCase().includes(this.search.toLowerCase()) ||
           emoji.tags.some(tag => tag.toLowerCase().includes(this.search.toLowerCase()))
       );
@@ -43,6 +43,7 @@ export default {
     selectCategory(category: string) {
       this.search = '';
       this.categorySelected = category;
+      this.results = this.emojisByCategory[category];
       this.scrollOnTop();
     },
     scrollOnTop() {
@@ -89,23 +90,13 @@ export default {
         <div
             class="grid grid-cols-6 grid-flow-row auto-rows-auto">
           <div
-              v-if="search === ''"
-              v-for="(result, r) in emojisByCategory[categorySelected]"
+              v-for="(result, r) in results"
               :key="r"
               class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
-              @click="$emit('emojiSent', result)"
-          >
-            <span>{{ result.emoji }}</span>
-          </div>
-          <div
-              v-else
-              v-for="(result, r2) in searchResults"
-              :key="r2"
-              class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
-              @click="$emit('emojiSent', result)"
+              @click="$emit('emojiSent', result); console.log(result)"
           >
             <div class="tooltip-container">{{ result.emoji }}
-              <span class="tooltip-text">{{result.emoji}}</span>
+              <span class="tooltip-text">{{ result.emoji }}</span>
             </div>
           </div>
         </div>

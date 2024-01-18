@@ -6,8 +6,6 @@ import Basic from './demo/GifPicker/Basic.vue';
 
 This GIF Picker component is a component that enables users to search for GIFs using the Tenor API.
 
-It includes a search field where users can input search terms and a search button
-
 When users search a GIF, the component sends a request to the Tenor API with the provided search term
 
 By default, the component displays categories to help users search GIFs
@@ -17,6 +15,8 @@ The component also handles loading with a skeleton glowing effect and an error m
 ## How to get your Tenor API
 
 To use this component, <strong> you will need to get an API key </strong> in order to get GIFs from the Tenor API :
+
+- [developers.google.com/tenor](https://developers.google.com/tenor/guides/quickstart#setup)
 
 ## Example Usage
 
@@ -29,11 +29,17 @@ To use this component, <strong> you will need to get an API key </strong> in ord
 
 ```vue
 <template>
-  <GifPicker api-key="<your-api-key>"/>
+  <GifPicker api-key="AIzaSyDVeSv0S9z1sKZUmY4BqFugXp1lasu9KeQ" @gifSent="handleGif"></GifPicker>
 </template>
+
 <script setup lang="ts">
-  import GifPicker from "vue-picker-library";
-  import 'vue-picker-library/style.css'; // not needed if imported globally
+  import {GifPicker} from "vue-gif-emoji-picker";
+  import type {Gif} from "vue-gif-emoji-picker";
+  import 'vue-gif-emoji-picker/style.css'; // not needed if imported globally
+
+  function handleGif(gif: Gif) {
+    console.log(gif);
+  }
 </script>
 ```
 
@@ -46,3 +52,16 @@ Here are the properties that can be applied to the component
 | Name    | Type   | Default | Description   |
 |---------|--------|---------|---------------|
 | api-key | string | null    | Tenor API Key |
+
+### Events
+
+| Name    | Parameters         | Description               |
+|---------|--------------------|---------------------------|
+| gifSent | [Gif](#gif-object) | Gif returned when clicked |
+
+### Gif Object
+
+| Name                | Parameters | Description            |
+|---------------------|------------|------------------------|
+| content_description | string     | Description of the gif |
+| url                 | string     | URL of the gif         |

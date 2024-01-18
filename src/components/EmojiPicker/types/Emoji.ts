@@ -1,4 +1,4 @@
-export type Emoji={
+export type Emoji = {
     aliases: string[],
     category: string,
     description: string,

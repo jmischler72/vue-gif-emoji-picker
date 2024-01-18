@@ -24,7 +24,7 @@ export default {
   vite: {
     resolve: {
       alias: {
-        'vue-picker-library': path.resolve(__dirname, '../../src'),
+        'vue-gif-emoji-picker': path.resolve(__dirname, '../../src'),
       },
     }
   }

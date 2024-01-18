@@ -14,19 +14,25 @@ In your `package.json`, you shall have the dependencies compatible with the foll
 }
 ```
 
+Then you can install the package from npm
 
-In your `main.ts`, you shall import the CSS stylesheet:
+```shell
+npm i vue-gif-emoji-picker
+```
+
+In your `main.ts`, you can import the CSS stylesheet globally:
 
 ```ts
 import 'vue-picker-library/dist/style.css'
 ```
->You can also import this stylesheet wherever your component is used.
+
+> You can also import this stylesheet wherever your component is used.
 
 
 Import components from this library in your own component:
 
 ```html
 <script setup lang="ts">
-  import { GifPicker } from 'vue-picker-library';
+    import {GifPicker} from 'vue-picker-library';
 </script>
 ```
