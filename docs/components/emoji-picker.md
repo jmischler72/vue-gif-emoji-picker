@@ -1,16 +1,17 @@
 <script setup>
 import Basic from './demo/EmojiPicker/Basic.vue'
 </script>
-# Component B
 
-This component depends on third-party component library for Vue 3:
+# Emoji Picker
 
-* Component (button) from [PrimeVue](https://www.primefaces.org/primevue/)
-* CSS from [PrimeIcons](https://www.primefaces.org/showcase/icons.xhtml) and [PrimeFlex](https://www.primefaces.org/primeflex/)
+This Emoji Picker component is a component that enables users to search for emojis.
+
+By default, the component displays the first category and let you click others to find your emoji
+
+You can also search for emoji with their description
 
 ## Example Usage
-
-Click the buttons to change the count.
+Click an emoji to see what it returns in the console
 
 <DemoContainer>
   <Basic/>
@@ -19,13 +20,14 @@ Click the buttons to change the count.
 <<< @/components/demo/EmojiPicker/Basic.vue
 
 ## Reference
+
 You may show props, slots, events, methods, etc. using Markdown.
 
 ### Properties
 
-| Name        | Type     | Default  | Description     |
-| ----------- | -------- | -------- | --------------- |
-|             |          |          |                 |
+| Name    | Type    | Default | Description                       |
+|---------|---------|---------|-----------------------------------|
+| tooltip | boolean | false   | Display or not tooltips on emojis |
 
 ### Events
 

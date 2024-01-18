@@ -29,7 +29,7 @@ To use this component, <strong> you will need to get an API key </strong> in ord
 
 ```vue
 <template>
-  <GifPicker api-key="AIzaSyDVeSv0S9z1sKZUmY4BqFugXp1lasu9KeQ" @gifSent="handleGif"></GifPicker>
+  <GifPicker api-key="<your-api-key>" @gifSent="handleGif"></GifPicker>
 </template>
 
 <script setup lang="ts">

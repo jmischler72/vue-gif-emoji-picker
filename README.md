@@ -1,18 +1,48 @@
-# Vue 3 + TypeScript + Vite
+# vue-gif-emoji-picker
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<strong>This component library offers a set of two components: a GIF Picker and an Emoji Picker.</strong>
 
-## Recommended IDE Setup
+Both components were based on this repository [enzostvs/vue3-discordpicker](https://github.com/enzostvs/vue3-discordpicker)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- The GIF Picker component uses the Tenor API v2, allowing users to search and select GIFs.
 
-## Type Support For `.vue` Imports in TS
+- The Emoji Picker component provides users with a wide array of emojis sorted in multiples categories . 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+# Getting Started
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Here is a set of instructions to help you install this component library
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Setup
+
+First make sure that this library is compatible with your version of Vue
+
+>In your `package.json`, you shall have the dependencies compatible with the following:
+>
+>```json
+>"dependencies": {
+>   "vue": "^3.2.25"
+>}
+>```
+
+Then you can install the package from npm
+
+```shell
+npm i vue-gif-emoji-picker
+```
+
+In your `main.ts`, you can import the CSS stylesheet globally:
+
+```ts
+import 'vue-gif-emoji-picker/dist/style.css'
+```
+
+> You can also import this stylesheet wherever a component is used.
+
+
+Import components from this library in your own component:
+
+```html
+<script setup lang="ts">
+    import {GifPicker} from 'vue-gif-emoji-picker';
+</script>
+```

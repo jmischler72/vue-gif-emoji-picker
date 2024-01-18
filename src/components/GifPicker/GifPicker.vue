@@ -18,8 +18,8 @@ export default {
       type: String,
       required: true
     },
-
   },
+  emits: ["gifSent"],
   data() {
     return {
       search: '',

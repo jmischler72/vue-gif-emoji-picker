@@ -4,7 +4,7 @@ export default {
   title: 'vue-gif-emoji-picker',
   description: 'GIF and Emoji Picker Components for Vue3 projects',
   themeConfig: {
-    repo: 'https://github.com/wuruoyun/vue-component-lib-starter',
+    repo: 'https://github.com/jmischler72/vue-gif-emoji-picker',
     sidebar: [
       {
         text: 'Introduction',

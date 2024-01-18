@@ -1,5 +1,5 @@
 <template>
-  <GifPicker api-key="AIzaSyDVeSv0S9z1sKZUmY4BqFugXp1lasu9KeQ" @gifSent="handleGif"></GifPicker>
+  <GifPicker api-key="" @gifSent="handleGif"></GifPicker>
 </template>
 
 <script setup lang="ts">

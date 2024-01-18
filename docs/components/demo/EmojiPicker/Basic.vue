@@ -1,7 +1,12 @@
 <template>
-  <EmojiPicker/>
+  <EmojiPicker tooltip="true" @emojiSent="handleEmoji"/>
 </template>
 <script setup lang="ts">
-import 'vue-picker-library/style.css';
-import EmojiPicker from "vue-picker-library/components/EmojiPicker/EmojiPicker.vue";
+import {EmojiPicker} from "vue-gif-emoji-picker";
+import type {Emoji} from "vue-gif-emoji-picker";
+import 'vue-gif-emoji-picker/style.css';
+
+function handleEmoji(emoji: Emoji) {
+  console.log(emoji);
+}
 </script>

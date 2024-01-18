@@ -6,7 +6,7 @@ import emojis from './emoji.json';
 import {Emoji} from "./types/Emoji.ts";
 
 export default {
-
+  emits: ["emojiSent"],
   data() {
     return {
       search: '',
@@ -14,6 +14,9 @@ export default {
       emojisByCategory: {} as Record<string, Emoji[]>,
       categorySelected: "",
     }
+  },
+  props: {
+    tooltip: Boolean,
   },
   watch: {
     search() {
@@ -33,11 +36,12 @@ export default {
   methods: {
     getEmojisFromSearch() {
       if (!this.search) {
+        this.results = this.emojisByCategory[this.categorySelected];
         return;
       }
       this.results = emojis.filter(emoji =>
           emoji.description.toLowerCase().includes(this.search.toLowerCase()) ||
-          emoji.tags.some(tag => tag.toLowerCase().includes(this.search.toLowerCase()))
+          emoji.aliases.some(tag => tag.toLowerCase().includes(this.search.toLowerCase()))
       );
     },
     selectCategory(category: string) {
@@ -88,16 +92,17 @@ export default {
       </div>
       <div id="emojis" class="overflow-auto px-2 w-full">
         <div
-            class="grid grid-cols-6 grid-flow-row auto-rows-auto">
+            class="grid grid-cols-6 grid-flow-row auto-rows-auto overflow-hidden pb-2">
           <div
               v-for="(result, r) in results"
               :key="r"
-              class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1 overflow-hidden"
-              @click="$emit('emojiSent', result); console.log(result)"
+              class=" text-xl rounded-lg text-white flex items-center justify-center cursor-pointer z-1"
+              @click="$emit('emojiSent', result)"
           >
-            <div class="tooltip-container">{{ result.emoji }}
-              <span class="tooltip-text">{{ result.emoji }}</span>
+            <div v-if="tooltip" class="tooltip-container">{{ result.emoji }}
+              <span class="tooltip-text bg-gray-600 dark:bg-gray-700 px-2">{{ result.aliases[0] }}</span>
             </div>
+            <span v-else>{{result.emoji}}</span>
           </div>
         </div>
       </div>
@@ -110,23 +115,23 @@ export default {
 /* Tooltip container */
 .tooltip-container {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 .tooltip-container .tooltip-text {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
   border-radius: 6px;
 
   /* Position the tooltip text - see examples below! */
   position: absolute;
-  z-index: 1;
+  top: 80%;
+  left: 50%;
+  margin-left: -30px;
+  z-index: 3;
+  font-size: 10px;
+  line-height: 12px;
 }
 
 .tooltip-container:hover .tooltip-text {
