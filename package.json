@@ -1,7 +1,12 @@
 {
   "name": "vue-gif-emoji-picker",
   "description": "GIF and Emoji Picker Components for Vue3 projects",
-  "version": "1.1.2",
+  "version": "1.1.3",
+  "author": "Joffrey Mischler",
+  "homepage": "https://github.com/jmischler72/vue-gif-emoji-picker",
+  "bugs": {
+    "url": "https://github.com/jmischler72/vue-gif-emoji-picker"
+  },
   "type": "module",
   "files": [
     "dist/*",
