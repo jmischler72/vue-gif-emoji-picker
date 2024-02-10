@@ -1,7 +1,9 @@
 # vue-gif-emoji-picker
 
-<strong>This component library offers a set of two components: a GIF Picker and an Emoji Picker.</strong>
 [NPM Link](https://www.npmjs.com/package/vue-gif-emoji-picker)
+
+<strong>This component library offers a set of two components: a GIF Picker and an Emoji Picker.</strong>
+
 
 Both components were based on this repository [enzostvs/vue3-discordpicker](https://github.com/enzostvs/vue3-discordpicker)
 
